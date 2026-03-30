@@ -1,0 +1,77 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #333;
+    color: white;
+    margin: 0;
+}
+
+.container {
+    text-align: center;
+}
+
+.scene {
+    width: 250px;
+    height: 200px;
+    margin: 80px auto;
+    perspective: 1000px; /* Tạo chiều sâu 3D */
+}
+
+.carousel {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transform-style: preserve-3d;
+    animation: spin 15s infinite linear; /* Thời gian quay 1 vòng */
+}
+
+.panel {
+    position: absolute;
+    width: 250px;
+    height: 200px;
+    left: 0;
+    top: 0;
+}
+
+.panel img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: 2px solid #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+    /* Thêm dòng này để lúc phóng to nó mượt mà, không bị giật cục */
+    transition: all 0.3s ease; 
+    cursor: pointer;
+}
+
+/* THÊM ĐOẠN NÀY: Hiệu ứng khi rê chuột vào ảnh */
+.panel img:hover {
+    transform: scale(1.15); /* Phóng to ảnh ra một chút */
+    box-shadow: 0 0 30px rgba(255, 255, 255, 1); /* Viền sáng màu trắng rực rỡ hơn */
+}
+
+/* Tính toán góc quay cho 6 mặt (360 độ / 6 = 60 độ) */
+.panel:nth-child(1) { transform: rotateY(0deg) translateZ(250px); }
+.panel:nth-child(2) { transform: rotateY(60deg) translateZ(250px); }
+.panel:nth-child(3) { transform: rotateY(120deg) translateZ(250px); }
+.panel:nth-child(4) { transform: rotateY(180deg) translateZ(250px); }
+.panel:nth-child(5) { transform: rotateY(240deg) translateZ(250px); }
+.panel:nth-child(6) { transform: rotateY(300deg) translateZ(250px); }
+
+/* Khung hình chuyển động quay tròn */
+@keyframes spin {
+    from { transform: rotateY(0deg); }
+    to { transform: rotateY(360deg); }
+}
+
+.back-link {
+    display: inline-block;
+    margin-top: 30px;
+    color: #00d2ff;
+    text-decoration: none;
+    font-size: 18px;
+}
